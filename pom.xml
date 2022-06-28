@@ -14,7 +14,10 @@
 	<name>proyecto_u2_jm</name>
 	<description>Practicas</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>16</java.version>
+		<maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>16</maven.compiler.source>
+	
 	</properties>
 	<dependencies>
 	
