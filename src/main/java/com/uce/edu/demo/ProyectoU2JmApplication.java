@@ -6,8 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.service.IPersonaJdbcService;
-import com.uce.edu.demo.to.Persona;
+import com.uce.edu.demo.tarea.service.IEstudianteJdbcService;
+import com.uce.edu.demo.tarea.to.Estudiante;
 
 @SpringBootApplication
 public class ProyectoU2JmApplication implements CommandLineRunner{
@@ -15,7 +15,7 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 	private static Logger LOG =Logger.getLogger(ProyectoU2JmApplication.class);
 	
 	@Autowired
-	private IPersonaJdbcService personaJdbcService;
+	private IEstudianteJdbcService estudianteJdbcService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2JmApplication.class, args);
@@ -24,28 +24,31 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Persona p=new Persona();
-		p.setId(5);
-		p.setNombre("A");
-		p.setApellido("M");
-		//INSERTAR
-		//this.personaJdbcService.guardar(p);
+		//1.Insertar
+		Estudiante e=new Estudiante();
+		e.setId(1214);
+		e.setNombre("Lucas");
+		e.setApellido("Ruiz");
+		e.setCarrera("Odontologia");
+		e.setSemestre("Octavo");
+		this.estudianteJdbcService.guardar(e);
 		
-		Persona p1=new Persona();
-		p1.setNombre("Samanta");
-		p1.setApellido("Velez");
-		p1.setId(2);
-		//ACTUALIZAR
-		//this.personaJdbcService.actualizar(p1);
+		//2.Actualizar
+		Estudiante e1=new Estudiante();
+		e1.setNombre("Alex");
+		e1.setApellido("Martinez");
+		e1.setCarrera("Psicologia");
+		e1.setSemestre("Noveno");
+		e1.setId(1317);
+		//this.estudianteJdbcService.actualizar(e1);
 		
-		//ELIMINAR
-		//this.personaJdbcService.eliminar(5);
+		//3.Eliminar
+		//this.estudianteJdbcService.eliminar(1010);
 		
-		//BUSCAR
-		Persona p2=new Persona();
-		p2=this.personaJdbcService.buscar(2);
-		LOG.info(p2);
-		
+		//4.Buscar
+		Estudiante e2=new Estudiante();
+		//e2=this.estudianteJdbcService.buscar(1513);
+		//LOG.info(e2);
 	}
 
 }
