@@ -1,27 +1,29 @@
-package com.uce.edu.demo.to;
+package com.uce.edu.demo.repository.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="persona")
 public class Persona {
 	
-	//Constructor por defecto
-	public Persona() {
-		
-	}
-	public Persona(int id, String nombre, String apellido) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.apellido = apellido;
-	}
+	@Id
+	@Column(name="id")
+	private Integer id;
 	
-	private int id;
+	@Column(name="nombre")
 	private String nombre;
+	
+	@Column(name="apellido")
 	private String apellido;
 	
-	//SET GET
-	public int getId() {
+	//SET y GET
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -36,9 +38,12 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
 	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
 	}
+	
+	
 	
 }

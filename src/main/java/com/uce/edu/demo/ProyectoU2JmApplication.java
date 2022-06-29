@@ -6,8 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.tarea.service.IEstudianteJdbcService;
-import com.uce.edu.demo.tarea.to.Estudiante;
+import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
 public class ProyectoU2JmApplication implements CommandLineRunner{
@@ -15,7 +15,7 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 	private static Logger LOG =Logger.getLogger(ProyectoU2JmApplication.class);
 	
 	@Autowired
-	private IEstudianteJdbcService estudianteJdbcService;
+	private IPersonaJpaService personaJpaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2JmApplication.class, args);
@@ -23,32 +23,30 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		//Buscar
+		//LOG.info("Dato con JPA:"+this.personaJpaService.buscar(2));
 		
-		//1.Insertar
-		Estudiante e=new Estudiante();
-		e.setId(1214);
-		e.setNombre("Lucas");
-		e.setApellido("Ruiz");
-		e.setCarrera("Odontologia");
-		e.setSemestre("Octavo");
-		this.estudianteJdbcService.guardar(e);
+		Persona p=new Persona();
+		p.setId(7);
+		p.setNombre("Rebeca");
+		p.setApellido("Ordoñez");
+		//Guardar
+		//this.personaJpaService.guardar(p);
 		
-		//2.Actualizar
-		Estudiante e1=new Estudiante();
-		e1.setNombre("Alex");
-		e1.setApellido("Martinez");
-		e1.setCarrera("Psicologia");
-		e1.setSemestre("Noveno");
-		e1.setId(1317);
-		//this.estudianteJdbcService.actualizar(e1);
 		
-		//3.Eliminar
-		//this.estudianteJdbcService.eliminar(1010);
+		//Actualizar
+		Persona p1=new Persona();
+		p1.setId(3);
+		p1.setNombre("Madelyn");
+		p1.setApellido("Ruiz");
+		//this.personaJpaService.actualizar(p1);
 		
-		//4.Buscar
-		Estudiante e2=new Estudiante();
-		//e2=this.estudianteJdbcService.buscar(1513);
-		//LOG.info(e2);
+		
+		//Eliminar
+		this.personaJpaService.eliminar(1);
+		
+		
+		
 	}
 
 }
