@@ -1,11 +1,11 @@
 package com.uce.edu.demo.tarea.repository;
 
-import com.uce.edu.demo.tarea.to.Estudiante;
+import com.uce.edu.demo.tarea.to.EstudianteTo;
 
 public interface IEstudianteJdbcRepository {
 	
-	public Estudiante buscarPorId(int id);
-	public void insertar(Estudiante e);
-	public void actualizar(Estudiante e);
+	public EstudianteTo buscarPorId(int id);
+	public void insertar(EstudianteTo e);
+	public void actualizar(EstudianteTo e);
 	public void eliminar(int id);
 }

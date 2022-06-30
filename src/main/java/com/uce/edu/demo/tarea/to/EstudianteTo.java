@@ -1,6 +1,6 @@
 package com.uce.edu.demo.tarea.to;
 
-public class Estudiante {
+public class EstudianteTo {
 	
 	private int id;
 	private String nombre;
