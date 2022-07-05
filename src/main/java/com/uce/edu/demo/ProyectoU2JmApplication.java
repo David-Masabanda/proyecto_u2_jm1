@@ -6,8 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.tarea.repository.modelo.Estudiante;
-import com.uce.edu.demo.tarea.service.IEstudianteJpaService;
+import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
 public class ProyectoU2JmApplication implements CommandLineRunner{
@@ -15,7 +15,7 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 	private static Logger LOG =Logger.getLogger(ProyectoU2JmApplication.class);
 	
 	@Autowired
-	private IEstudianteJpaService estudianteJpaService;
+	private IPersonaJpaService personaJpaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2JmApplication.class, args);
@@ -23,33 +23,28 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		//Buscar
-		LOG.info("Datos con JPA:"+this.estudianteJpaService.buscar(1612));
-		
+		//LOG.info("Dato con JPA:"+this.personaJpaService.buscar(2));
+			
 		//Guardar
-		Estudiante e=new Estudiante();
-		e.setId(1123);
-		e.setNombre("Rebeca");
-		e.setApellido("Ordoñez");
-		e.setCarrera("Arquitectura");
-		e.setSemestre("Decimo");
-		this.estudianteJpaService.guardar(e);
-		
-		
+		Persona p=new Persona();
+		//p.setId(8);
+		p.setNombre("Lucia");
+		p.setApellido("Marks");
+		this.personaJpaService.guardar(p);
+				
+				
 		//Actualizar
-		Estudiante e1=new Estudiante();
-		e1.setId(1513);
-		e1.setNombre("Martha");
-		e1.setApellido("Alban");
-		e1.setCarrera("Medicina");
-		e1.setSemestre("Septimo");
-		this.estudianteJpaService.actualizar(e1);
-		
-		
+		Persona p1=new Persona();
+		//p1.setId(3);
+		p1.setNombre("Madelynn");
+		p1.setApellido("Ruiz");
+		//this.personaJpaService.actualizar(p1);
+				
+				
 		//Eliminar
-		this.estudianteJpaService.eliminar(1214);
-		
-		
+		//this.personaJpaService.eliminar(1);
 		
 	}
 
