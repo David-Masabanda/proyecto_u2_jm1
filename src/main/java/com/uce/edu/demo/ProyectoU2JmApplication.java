@@ -25,24 +25,19 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		//Buscar
-		//LOG.info("Dato con JPA:"+this.personaJpaService.buscar(2));
 			
-		//Guardar
-		Persona p=new Persona();
-		//p.setId(8);
-		p.setNombre("Sara");
-		p.setApellido("Lopez");
-		p.setGenero("F");
-		p.setCedula("1719139881");
-		//this.personaJpaService.guardar(p);
+		//Persona p1=this.personaJpaService.buscarPorCedula("1719139881");
+		//LOG.info("Persona encontrada: "+ p1);
 		
-		Persona p1=this.personaJpaService.buscarPorCedula("1719139881");
-		LOG.info("Persona encontrada: "+ p1);
-				
-		List<Persona> lista=this.personaJpaService.buscarPorApellido("Lopez");
+		//GENERO
+		List<Persona> lista=this.personaJpaService.buscarPorGenero("M");
 		for(Persona item:lista) {
+			LOG.info("Personas:"+item);
+		}
+		
+		//NOMBRE
+		List<Persona> lista2=this.personaJpaService.buscarPorNombre("David");
+		for(Persona item:lista2) {
 			LOG.info("Personas:"+item);
 		}
 	}

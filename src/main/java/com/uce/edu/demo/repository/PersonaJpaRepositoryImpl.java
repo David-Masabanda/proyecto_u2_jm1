@@ -48,8 +48,9 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 
 	@Override
 	public List<Persona> buscarPorGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
+		Query myQuery2=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.genero =:datoGenero");
+		myQuery2.setParameter("datoGenero", genero);
+		return myQuery2.getResultList();
 	}
 
 	@Override
@@ -57,6 +58,13 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		Query myQuery=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido =:datoApellido");
 		myQuery.setParameter("datoApellido", apellido);
 		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Persona> buscarPorNombre(String nombre) {
+		Query myQuery3=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.nombre =:datoNombre");
+		myQuery3.setParameter("datoNombre", nombre);
+		return myQuery3.getResultList();
 	}
 
 }
