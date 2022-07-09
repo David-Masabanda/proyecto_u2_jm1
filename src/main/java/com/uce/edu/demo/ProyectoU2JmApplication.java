@@ -1,14 +1,11 @@
 package com.uce.edu.demo;
 
-import java.util.List;
-
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
@@ -25,21 +22,15 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-			
-		//Persona p1=this.personaJpaService.buscarPorCedula("1719139881");
-		//LOG.info("Persona encontrada: "+ p1);
 		
-		//GENERO
-		List<Persona> lista=this.personaJpaService.buscarPorGenero("M");
-		for(Persona item:lista) {
-			LOG.info("Personas:"+item);
-		}
+		//Actualizar con JPQL
+		//int resultado=this.personaJpaService.actualizarPorApellido("Femenino", "Lopez");
+		//LOG.info("Cantidad de registros actualizados: "+resultado);
 		
-		//NOMBRE
-		List<Persona> lista2=this.personaJpaService.buscarPorNombre("David");
-		for(Persona item:lista2) {
-			LOG.info("Personas:"+item);
-		}
+		//Eliminar con JPQL
+		int resultado=this.personaJpaService.eliminarPorGenero("Femenino");
+		LOG.info("Cantidad de registros eliminados: "+resultado);
+		
 	}
 
 }

@@ -13,7 +13,13 @@ public interface IPersonaJpaRepository {
 	public Persona buscarPorCedula(String cedula);
 	public Persona buscarPorId(Integer id);
 	
+	//Clasicos
 	public void insertar(Persona p);
 	public void actualizar(Persona p);
 	public void eliminar(Integer id);
+	
+	//Nuevos
+	public int actualizarPorApellido(String genero, String apellido);
+	public int eliminarPorGenero(String genero);
+	
 }

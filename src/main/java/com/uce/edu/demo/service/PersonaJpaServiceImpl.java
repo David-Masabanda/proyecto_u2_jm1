@@ -54,4 +54,14 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService{
 		return this.personaJpaRepository.buscarPorNombre(nombre);
 	}
 
+	@Override
+	public int actualizarPorApellido(String genero, String apellido) {
+		return this.personaJpaRepository.actualizarPorApellido(genero, apellido);
+	}
+
+	@Override
+	public int eliminarPorGenero(String genero) {
+		return this.personaJpaRepository.eliminarPorGenero(genero);
+	}
+
 }
