@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -45,7 +46,35 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		jpqlQuery.setParameter("datoCedula",cedula);
 		return (Persona)jpqlQuery.getSingleResult();
 	}
+	
+	//TYPED no especifico el return
+	@Override
+	public Persona buscarPorCedulaTyped(String cedula) {
+		TypedQuery<Persona> myTypedQuery=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula =:datoCedula",Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+	}
+	
+	//NAMED
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		Query myQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula");
+		myQuery.setParameter("datoCedula", cedula);
+		return (Persona)myQuery.getSingleResult();
+		
+		//Combinamos el NamedQuery con el TypedQuery, de igual forma podemos
+		//hacerlo al reves
+	}
 
+	//TYPED NAMED
+	@Override
+	public Persona buscarPorCedulaTypedNamed(String cedula) {
+		TypedQuery<Persona> miTypedQuery=this.entityManager.createNamedQuery("Persona.buscarPorCedula",Persona.class);
+		miTypedQuery.setParameter("datoCedula", cedula);
+		return miTypedQuery.getSingleResult();
+	}
+	
+	
 	@Override
 	public List<Persona> buscarPorGenero(String genero) {
 		Query myQuery2=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.genero =:datoGenero");
@@ -74,12 +103,23 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		myQuery4.setParameter("datoApellido", apellido);
 		return myQuery4.executeUpdate();
 	}
+	
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		TypedQuery<Persona> miTypedQuery2=this.entityManager.createNamedQuery("Persona.buscarPorNombreApellido",Persona.class);
+		miTypedQuery2.setParameter("datoNombre", nombre);
+		miTypedQuery2.setParameter("datoApellido", apellido);
+		return miTypedQuery2.getResultList();
+	}
 
+	
+	
 	@Override
 	public int eliminarPorGenero(String genero) {
 		Query myQuery5=this.entityManager.createQuery("DELETE FROM Persona p WHERE p.genero =:datoGenero");
 		myQuery5.setParameter("datoGenero", genero);
 		return myQuery5.executeUpdate();
 	}
+
 
 }

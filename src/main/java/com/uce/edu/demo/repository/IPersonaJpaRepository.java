@@ -10,7 +10,18 @@ public interface IPersonaJpaRepository {
 	public List<Persona> buscarPorNombre(String nombre);
 	public List<Persona> buscarPorApellido(String apellido);
 	
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido);
+	
 	public Persona buscarPorCedula(String cedula);
+	
+	//Typed
+	public Persona buscarPorCedulaTyped(String cedula);
+	//Named
+	public Persona buscarPorCedulaNamed(String cedula);
+	//TypedNamed
+	public Persona buscarPorCedulaTypedNamed(String cedula);
+	
+	
 	public Persona buscarPorId(Integer id);
 	
 	//Clasicos
