@@ -1,5 +1,7 @@
 package com.uce.edu.demo.tarea.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,36 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService{
 	@Override
 	public Estudiante buscar(int id) {
 		return this.estudianteJpaRepository.buscarPorId(id);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorSemestreTyped(String semestre) {
+		return this.estudianteJpaRepository.buscarPorSemestreTyped(semestre);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorCarreraTyped(String carrera) {
+		return this.estudianteJpaRepository.buscarPorCarreraTyped(carrera);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorApellidoNamed(String apellido) {
+		return this.estudianteJpaRepository.buscarPorApellidoNamed(apellido);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorNombreNamed(String nombre) {
+		return this.estudianteJpaRepository.buscarPorNombreNamed(nombre);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorCarreraSemestre(String carrera, String semestre) {
+		return this.estudianteJpaRepository.buscarPorCarreraSemestre(carrera, semestre);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorApellido(String apellido) {
+		return this.estudianteJpaRepository.buscarPorApellido(apellido);
 	}
 
 }

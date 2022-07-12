@@ -3,10 +3,20 @@ package com.uce.edu.demo.tarea.repository.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="estudiante")
+
+@NamedQueries({
+	@NamedQuery(name="Estudiante.buscarPorApellido", query="SELECT e FROM Estudiante e WHERE e.apellido =:datoApellido"),
+	@NamedQuery(name="Estudiante.buscarPorNombreLetra", query="SELECT e FROM Estudiante e WHERE e.nombre LIKE :datoLetra"),
+	@NamedQuery(name="Estudiante.buscarPorCarreraSemestre", query="SELECT e FROM Estudiante e WHERE e.carrera =:datoCarrera AND e.semestre=:datoSemestre"),
+	@NamedQuery(name="Estudiante.buscarPorApellidoLetra", query="SELECT e FROM Estudiante e WHERE e.apellido LIKE :datoLetra")
+})
+
 public class Estudiante {
 	
 	@Id
