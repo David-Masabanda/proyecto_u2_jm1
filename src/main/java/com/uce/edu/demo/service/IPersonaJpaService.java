@@ -12,6 +12,13 @@ public interface IPersonaJpaService {
 	
 	public Persona buscarPorId(Integer id);
 	public Persona buscarPorCedula(String cedula);
+	//Native
+	public Persona buscarPorCedulaNative(String cedula);
+	
+	//Named-Native
+	public Persona buscarPorCedulaNamedNative(String cedula);
+	//Criteria Api
+	public Persona buscarPorCedulaNamedCriteriaApi(String cedula);
 	
 	public List<Persona> buscarPorApellido(String apellido);
 	public List<Persona> buscarPorGenero(String genero);

@@ -6,6 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -74,6 +77,21 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		return miTypedQuery.getSingleResult();
 	}
 	
+	//NATIVE
+	@Override
+	public Persona buscarPorCedulaNative(String cedula) {
+		Query myQuery=this.entityManager.createNativeQuery("SELECT * FROM persona WHERE pers_cedula =:datoCedula",Persona.class);
+		myQuery.setParameter("datoCedula", cedula);
+		return (Persona)myQuery.getSingleResult();
+	}
+	
+	//NAMED NATIVE
+	@Override
+	public Persona buscarPorCedulaNamedNative(String cedula) {
+		TypedQuery<Persona> miQuery=this.entityManager.createNamedQuery("Persona.buscarPorCedulaNative",Persona.class);
+		miQuery.setParameter("datoCedula", cedula);
+		return miQuery.getSingleResult();
+	}
 	
 	@Override
 	public List<Persona> buscarPorGenero(String genero) {
@@ -121,5 +139,16 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		return myQuery5.executeUpdate();
 	}
 
+	@Override
+	public Persona buscarPorCedulaNamedCriteriaApi(String cedula) {
+		CriteriaBuilder myBuilder=this.entityManager.getCriteriaBuilder();
+		CriteriaQuery<Persona> myQuery=myBuilder.createQuery(Persona.class);
+		
+		//Root
+		Root<Persona> personaRoot=myQuery.from(Persona.class);
+		TypedQuery <Persona> queryFinal=this.entityManager.createQuery(myQuery.select(personaRoot).where(myBuilder.equal(personaRoot.get("cedula"), cedula)));
+		
+		return queryFinal.getSingleResult();
+	}
 
 }

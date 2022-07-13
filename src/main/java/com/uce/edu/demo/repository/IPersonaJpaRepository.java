@@ -13,6 +13,13 @@ public interface IPersonaJpaRepository {
 	public List<Persona> buscarPorNombreApellido(String nombre, String apellido);
 	
 	public Persona buscarPorCedula(String cedula);
+	//Native
+	public Persona buscarPorCedulaNative(String cedula);
+	//Named-Native
+	public Persona buscarPorCedulaNamedNative(String cedula);
+	//Criteria Api
+	public Persona buscarPorCedulaNamedCriteriaApi(String cedula);
+		
 	
 	//Typed
 	public Persona buscarPorCedulaTyped(String cedula);
