@@ -64,4 +64,24 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService{
 		return this.estudianteJpaRepository.buscarPorApellido(apellido);
 	}
 
+	@Override
+	public Estudiante buscarPorIdNative(Integer id) {
+		return this.estudianteJpaRepository.buscarPorIdNative(id);
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoSemestreNative(String apellido, String semestre) {
+		return this.estudianteJpaRepository.buscarPorApellidoSemestreNative(apellido, semestre);
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoCarreraNative(String apellido, String carrera) {
+		return this.estudianteJpaRepository.buscarPorApellidoCarreraNative(apellido, carrera);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorCarreraNative(String carrera) {
+		return this.estudianteJpaRepository.buscarPorCarreraNative(carrera);
+	}
+
 }

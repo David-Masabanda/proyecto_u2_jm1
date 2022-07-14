@@ -20,4 +20,13 @@ public interface IEstudianteJpaRepository {
 	//TypedNamed
 	public List<Estudiante> buscarPorCarreraSemestre(String carrera, String semestre);
 	public List<Estudiante> buscarPorApellido(String apellido);
+
+	//Native
+	public Estudiante buscarPorIdNative(Integer id);
+	public Estudiante buscarPorApellidoSemestreNative(String apellido, String semestre);
+	
+	//Named-Native
+	public Estudiante buscarPorApellidoCarreraNative(String apellido, String carrera);
+	public List<Estudiante> buscarPorCarreraNative(String carrera);
+
 }

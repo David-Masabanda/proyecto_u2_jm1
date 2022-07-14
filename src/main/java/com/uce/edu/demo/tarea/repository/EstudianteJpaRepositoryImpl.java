@@ -89,5 +89,37 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository{
 		myQuery1.setParameter("datoLetra", apellido);
 		return myQuery1.getResultList();
 	}
+	
+	//Native
+	@Override
+	public Estudiante buscarPorIdNative(Integer id) {
+		Query myQuery1=this.entityManager.createNativeQuery("SELECT * FROM estudiante WHERE id = :datoId", Estudiante.class);
+		myQuery1.setParameter("datoId", id);
+		return (Estudiante)myQuery1.getSingleResult();
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoSemestreNative(String apellido, String semestre) {
+		Query myQuery2=this.entityManager.createNativeQuery("SELECT * FROM estudiante WHERE apellido= :datoApellido AND semestre= :datoSemestre", Estudiante.class);
+		myQuery2.setParameter("datoApellido", apellido);
+		myQuery2.setParameter("datoSemestre", semestre);
+		return (Estudiante)myQuery2.getSingleResult();
+	}
+	
+	//Named Native
+	@Override
+	public Estudiante buscarPorApellidoCarreraNative(String apellido, String carrera) {
+		TypedQuery<Estudiante> myQuery=this.entityManager.createNamedQuery("Estudiante.buscarPorApellidoCarreraNative", Estudiante.class);
+		myQuery.setParameter("datoApellido", apellido);
+		myQuery.setParameter("datoCarrera", carrera);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public List<Estudiante> buscarPorCarreraNative(String carrera) {
+		TypedQuery<Estudiante> myQuery=this.entityManager.createNamedQuery("Estudiante.buscarPorCarreraNative", Estudiante.class);
+		myQuery.setParameter("datoCarrera", carrera);
+		return myQuery.getResultList();
+	}
 
 }
