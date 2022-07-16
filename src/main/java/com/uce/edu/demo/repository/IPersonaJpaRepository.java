@@ -21,7 +21,8 @@ public interface IPersonaJpaRepository {
 	
 	//Criteria Api
 	public Persona buscarPorCedulaNamedCriteriaApi(String cedula);
-		
+	public Persona buscarDinamicamente(String nombre, String apellido, String genero);
+	public Persona buscarDinamicamentePredicados(String nombre, String apellido, String genero);
 	
 	//Typed
 	public Persona buscarPorCedulaTyped(String cedula);
