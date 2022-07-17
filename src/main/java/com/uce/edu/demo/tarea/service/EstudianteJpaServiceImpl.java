@@ -84,4 +84,14 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService{
 		return this.estudianteJpaRepository.buscarPorCarreraNative(carrera);
 	}
 
+	@Override
+	public Estudiante buscarDinamicamente(String nombre, String apellido, String semestre) {
+		return this.estudianteJpaRepository.buscarDinamicamente(nombre, apellido, semestre);
+	}
+
+	@Override
+	public Estudiante buscarDinamicamente2(String apellido, String semestre, String carrera) {
+		return this.estudianteJpaRepository.buscarDinamicamente2(apellido, semestre, carrera);
+	}
+
 }

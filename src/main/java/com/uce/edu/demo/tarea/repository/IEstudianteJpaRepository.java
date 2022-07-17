@@ -28,5 +28,9 @@ public interface IEstudianteJpaRepository {
 	//Named-Native
 	public Estudiante buscarPorApellidoCarreraNative(String apellido, String carrera);
 	public List<Estudiante> buscarPorCarreraNative(String carrera);
+	
+	//Criteria API
+	public Estudiante buscarDinamicamente(String nombre, String apellido, String semestre);
+	public Estudiante buscarDinamicamente2(String apellido, String semestre, String carrera);
 
 }
