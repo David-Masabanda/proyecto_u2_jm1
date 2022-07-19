@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
 
 @Repository
 @Transactional
@@ -201,6 +203,29 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		
 		TypedQuery<Persona> myFinal = this.entityManager.createQuery(myQuery);
 		return myFinal.getSingleResult();
+	}
+	
+	
+	//Persona Sencilla
+	@Override
+	public List<PersonaSencilla> buscarPorApellidoSencillo(String apellido) {
+		TypedQuery<PersonaSencilla> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.PersonaSencilla(p.nombre,p.apellido) FROM Persona p WHERE p.apellido=:datoApellido   ",
+				PersonaSencilla.class);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<PersonaContadorGenero> consultarCantidadPorGenero() {
+		// select pers_genero, count(pers_genero) from persona GROUP BY pers_genero
+		// SELECT p.genero, COUNT(p.genero) FROM Persona p GROUP BY p.genero
+		// SELECT NEW com.uce.edu.demo.repository.modelo.PersonaContadorGenero(p.genero,
+		// COUNT(p.genero)) FROM Persona p GROUP BY p.genero
+		TypedQuery<PersonaContadorGenero> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.PersonaContadorGenero(p.genero, COUNT(p.genero)) FROM Persona p GROUP BY p.genero",
+				PersonaContadorGenero.class);
+		return myQuery.getResultList();
 	}
 
 }
