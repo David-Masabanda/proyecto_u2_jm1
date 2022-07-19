@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.tarea.repository.modelo.Estudiante;
+import com.uce.edu.demo.tarea.repository.modelo.EstudianteContadorCarrera;
+import com.uce.edu.demo.tarea.repository.modelo.EstudianteSencillo;
 
 @Repository
 @Transactional
@@ -168,6 +170,27 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository{
 		TypedQuery<Estudiante>queryFinal=this.entityManager.createQuery(myQuery);
 		
 		return queryFinal.getSingleResult();
+	}
+	
+	//Estudiante Sencillo
+	@Override
+	public List<EstudianteSencillo> consultarPorCarreraSencillo(String carrera) {
+		//SELECT nombre, apellido, semestre FROM estudiante WHERE carrera='Medicina'
+		TypedQuery<EstudianteSencillo>myQuery=this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.tarea.repository.modelo.EstudianteSencillo(e.nombre, e.apellido, e.semestre)FROM Estudiante e WHERE e.carrera= :datoCarrera",
+				EstudianteSencillo.class);
+		myQuery.setParameter("datoCarrera", carrera);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera() {
+		//SELECT carrera, COUNT(carrera) as "Cantidad Estudiantes" FROM estudiante  GROUP BY carrera
+		//"SELECT NEW com.uce.edu.demo.repository.modelo.PersonaContadorGenero(p.genero, COUNT(p.genero)) FROM Persona p GROUP BY p.genero"
+		TypedQuery<EstudianteContadorCarrera> myQuery=this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.tarea.repository.modelo.EstudianteContadorCarrera(e.carrera, COUNT(e.carrera))FROM Estudiante e GROUP BY e.carrera",
+				EstudianteContadorCarrera.class);
+		return myQuery.getResultList();
 	}
 
 }

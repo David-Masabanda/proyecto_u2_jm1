@@ -210,7 +210,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 	@Override
 	public List<PersonaSencilla> buscarPorApellidoSencillo(String apellido) {
 		TypedQuery<PersonaSencilla> myQuery = this.entityManager.createQuery(
-				"SELECT NEW com.uce.edu.demo.repository.modelo.PersonaSencilla(p.nombre,p.apellido) FROM Persona p WHERE p.apellido=:datoApellido   ",
+				"SELECT NEW com.uce.edu.demo.repository.modelo.PersonaSencilla(p.nombre,p.apellido) FROM Persona p WHERE p.apellido=:datoApellido ",
 				PersonaSencilla.class);
 		myQuery.setParameter("datoApellido", apellido);
 		return myQuery.getResultList();
