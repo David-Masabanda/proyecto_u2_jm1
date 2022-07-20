@@ -38,5 +38,5 @@ public interface IEstudianteJpaService {
 	
 	//Persona Sencilla
 	public List<EstudianteSencillo> consultarPorCarreraSencillo(String carrera);
-	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera();
+	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera(String semestre);
 }

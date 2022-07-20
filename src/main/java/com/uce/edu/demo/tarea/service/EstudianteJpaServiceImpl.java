@@ -102,8 +102,8 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService{
 	}
 
 	@Override
-	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera() {
-		return this.estudianteJpaRepository.consultarCantidadPorCarrera();
+	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera(String semestre) {
+		return this.estudianteJpaRepository.consultarCantidadPorCarrera(semestre);
 	}
 
 }

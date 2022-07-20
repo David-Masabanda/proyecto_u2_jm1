@@ -184,12 +184,13 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository{
 	}
 
 	@Override
-	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera() {
-		//SELECT carrera, COUNT(carrera) as "Cantidad Estudiantes" FROM estudiante  GROUP BY carrera
+	public List<EstudianteContadorCarrera> consultarCantidadPorCarrera(String semestre) {
+		//SELECT carrera, COUNT(carrera) as "Cantidad Estudiantes" FROM estudiante  WHERE semestre='Decimo' GROUP BY carrera
 		//"SELECT NEW com.uce.edu.demo.repository.modelo.PersonaContadorGenero(p.genero, COUNT(p.genero)) FROM Persona p GROUP BY p.genero"
 		TypedQuery<EstudianteContadorCarrera> myQuery=this.entityManager.createQuery(
-				"SELECT NEW com.uce.edu.demo.tarea.repository.modelo.EstudianteContadorCarrera(e.carrera, COUNT(e.carrera))FROM Estudiante e GROUP BY e.carrera",
+				"SELECT NEW com.uce.edu.demo.tarea.repository.modelo.EstudianteContadorCarrera(e.carrera, COUNT(e.carrera))FROM Estudiante e WHERE e.semestre=: datoSemestre GROUP BY e.carrera",
 				EstudianteContadorCarrera.class);
+		myQuery.setParameter("datoSemestre", semestre);
 		return myQuery.getResultList();
 	}
 
