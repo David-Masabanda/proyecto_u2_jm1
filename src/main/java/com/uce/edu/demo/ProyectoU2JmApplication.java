@@ -1,6 +1,6 @@
 package com.uce.edu.demo;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,21 +8,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.Ciudadano;
-import com.uce.edu.demo.repository.modelo.Empleado;
-import com.uce.edu.demo.service.ICiudadanoService;
-import com.uce.edu.demo.service.IPersonaJpaService;
+import com.uce.edu.demo.tarea.repository.modelo.Ciudadano1;
+import com.uce.edu.demo.tarea.repository.modelo.Pasaporte;
+import com.uce.edu.demo.tarea.service.ICiudadano1Service;
 
 @SpringBootApplication
 public class ProyectoU2JmApplication implements CommandLineRunner{
 	
 	private static Logger LOG =Logger.getLogger(ProyectoU2JmApplication.class);
 	
-	@Autowired
-	private IPersonaJpaService personaJpaService;
+	//@Autowired
+	//private IPersonaJpaService personaJpaService;
 	
 	@Autowired
-	private ICiudadanoService ciudadanoService;
+	private ICiudadano1Service ciudadanoService2;
 	
 	//@Autowired
 	//private IEstudianteJpaService estudianteJpaService;
@@ -33,29 +32,42 @@ public class ProyectoU2JmApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		
-		/*
-		List<PersonaSencilla>listaPersona=this.personaJpaService.buscarPorApellidoSencillo("Andrade");
-		for(PersonaSencilla item: listaPersona) {
-			LOG.info("PersonaSencilla: "+item);
-		}
+		//Insertar
+		Ciudadano1 c1=new Ciudadano1();
+		c1.setNombre("David");
+		c1.setApellido("Lagos");	
+		c1.setCedula("1719178245");
+		c1.setFechaNacimiento(LocalDateTime.of(2000, 3, 17, 8, 50, 2));
 		
-		List<PersonaContadorGenero>myLista=this.personaJpaService.consultarCantidadPorGenero();
-		for(PersonaContadorGenero item: myLista) {
-			LOG.info("Genero: "+item);
-		}*/
-		Ciudadano c1=new Ciudadano();
-		c1.setNombre("Laura");
-		c1.setApellido("Ordoñez");	
+		Pasaporte p1=new Pasaporte();
+		p1.setNumero(112407);
+		p1.setFechaEmision(LocalDateTime.of(2016, 5, 19, 8, 50, 2));
+		p1.setFechaCaducidad(LocalDateTime.of(2023, 5, 19, 8, 50, 2));
+		p1.setCiudadano(c1);
 		
-		Empleado e1=new Empleado();
-		e1.setCodigoIess("151311");
-		e1.setSalario(new BigDecimal(100));
-		e1.setCiudadano(c1);
+		c1.setPasaporte(p1);	
+		this.ciudadanoService2.insertar(c1);
 		
-		c1.setEmpleado(e1);
 		
-		this.ciudadanoService.insertar(c1);
+		
+		//Actualizar
+		Ciudadano1 c2=new Ciudadano1();
+		c2.setId(3);
+		c2.setNombre("Alex");
+		c2.setApellido("Perez");
+		c2.setCedula("1719150384");
+		c2.setFechaNacimiento(LocalDateTime.of(1999, 2, 10, 8, 50, 2));
+		this.ciudadanoService2.actualizar(c2);
+		
+		//Eliminar
+		this.ciudadanoService2.eliminar(4);
+		
+		//Buscar 
+		this.ciudadanoService2.buscarPorId(5);
+		
+		
 
 	}
 
