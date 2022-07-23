@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.repository.modelo.Ciudadano;
+import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
 
 @Repository
 @Transactional
@@ -14,11 +14,13 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository{
 	
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Override
 	public void insertar(Ciudadano c) {
 		this.entityManager.persist(c);
+		
 	}
 	
+
 	
 }
