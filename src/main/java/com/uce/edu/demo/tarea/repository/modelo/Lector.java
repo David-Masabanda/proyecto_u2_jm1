@@ -34,7 +34,7 @@ public class Lector {
 	private String direccion;
 
 	@OneToMany(mappedBy = "lector")
-	private List<Libro> libros;
+	private List<Escrito> escritos;
 
 	
 	//SET y GET
@@ -78,20 +78,23 @@ public class Lector {
 		this.direccion = direccion;
 	}
 
-	public List<Libro> getLibros() {
-		return libros;
+
+
+	public List<Escrito> getEscritos() {
+		return escritos;
 	}
 
-	public void setLibros(List<Libro> libros) {
-		this.libros = libros;
+	public void setEscritos(List<Escrito> escritos) {
+		this.escritos = escritos;
 	}
 
 	@Override
 	public String toString() {
 		return "Lector [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", direccion=" + direccion + ", libros=" + libros + "]";
+				+ ", direccion=" + direccion + ", escritos=" + escritos + "]";
 	}
-	
+
+
 	
 	
 }

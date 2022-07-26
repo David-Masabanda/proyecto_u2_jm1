@@ -11,29 +11,29 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="libro")
-public class Libro {
+@Table(name="escrito")
+public class Escrito {
 	
 	@Id
-	@Column(name="lib_id")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="lib_id_seq" )
-	@SequenceGenerator(name="lib_id_seq", sequenceName = "lib_id_seq", allocationSize =1 )
+	@Column(name="esc_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator ="esc_id_seq" )
+	@SequenceGenerator(name="esc_id_seq", sequenceName = "esc_id_seq", allocationSize =1 )
 	private Integer id;
 	
-	@Column(name="lib_titulo")
+	@Column(name="esc_titulo")
 	private String titulo;
 	
-	@Column(name="lib_genero")
+	@Column(name="esc_genero")
 	private String genero;
 	
-	@Column(name="lib_editorial")
+	@Column(name="esc_editorial")
 	private String editorial;
 	
-	@Column(name="lib_autor")
+	@Column(name="esc_autor")
 	private String autor;
 	
 	@ManyToOne
-	@JoinColumn(name="lib_id_lector")
+	@JoinColumn(name="esc_id_lector")
 	private Lector lector;
 
 	
@@ -88,9 +88,11 @@ public class Libro {
 
 	@Override
 	public String toString() {
-		return "Libro [id=" + id + ", titulo=" + titulo + ", genero=" + genero + ", editorial=" + editorial + ", autor="
-				+ autor + ", lector=" + lector + "]";
+		return "Escrito [id=" + id + ", titulo=" + titulo + ", genero=" + genero + ", editorial=" + editorial
+				+ ", autor=" + autor + ", lector=" + lector + "]";
 	}
+
+
 	
 	
 	

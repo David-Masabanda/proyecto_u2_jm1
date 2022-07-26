@@ -3,22 +3,22 @@ package com.uce.edu.demo.tarea.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uce.edu.demo.tarea.repository.ILibroRepository;
-import com.uce.edu.demo.tarea.repository.modelo.Libro;
+import com.uce.edu.demo.tarea.repository.IEscritoRepository;
+import com.uce.edu.demo.tarea.repository.modelo.Escrito;
 
 @Service
-public class LibroServiceImpl implements ILibroService{
+public class EscritoServiceImpl implements IEscritoService{
 	
 	@Autowired
-	private ILibroRepository libroRepository;
+	private IEscritoRepository libroRepository;
 	
 	@Override
-	public void insertar(Libro lib) {
+	public void insertar(Escrito lib) {
 		this.libroRepository.insertar(lib);
 	}
 
 	@Override
-	public void actualizar(Libro lib) {
+	public void actualizar(Escrito lib) {
 		this.libroRepository.actualizar(lib);
 	}
 
@@ -28,7 +28,7 @@ public class LibroServiceImpl implements ILibroService{
 	}
 
 	@Override
-	public Libro buscarPorId(Integer id) {
+	public Escrito buscarPorId(Integer id) {
 		return this.libroRepository.buscarPorId(id);
 	}
 
