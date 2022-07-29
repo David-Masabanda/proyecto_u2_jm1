@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -31,6 +32,9 @@ public class Vehiculo {
 	
 	@Column(name="veh_precio")
 	private BigDecimal precio;
+	
+	@OneToOne(mappedBy = "vehiculo")
+	private Matricula matricula;
 	
 	//SET y GET
 	public String getMarca() {
@@ -64,13 +68,18 @@ public class Vehiculo {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
+	public Matricula getMatricula() {
+		return matricula;
+	}
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
+	}
 	@Override
 	public String toString() {
 		return "Vehiculo [id=" + id + ", marca=" + marca + ", placa=" + placa + ", tipo=" + tipo + ", precio=" + precio
-				+ "]";
+				+ ", matricula=" + matricula + "]";
 	}
+	
 	
 	
 	
